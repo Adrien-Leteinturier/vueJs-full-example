@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional render in Vue Js</title>
+    <style>
+        .box {
+            width: 250px;
+            height: 250px;
+            border: 1px solid #333;
+        }
+        .red{
+            background-color: crimson;
+        }
+        .bordure {
+            border: 10px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="mon-app">
+        <h1>{{title}}</h1>
+        <button @click="toggleBox = !toggleBox">Toggle ta couleur</button>
+        
+        <template v-if="toggleBox">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsa voluptatem quidem omnis facere modi eligendi nisi nemo repudiandae quam laborum ea aut quas libero labore dolor, eaque tempora dolorem.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsa voluptatem quidem omnis facere modi eligendi nisi nemo repudiandae quam laborum ea aut quas libero labore dolor, eaque tempora dolorem.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi ipsa voluptatem quidem omnis facere modi eligendi nisi nemo repudiandae quam laborum ea aut quas libero labore dolor, eaque tempora dolorem.</p>
+        </template>
+<!--         
+        <div v-if="toggleBox" class="box red"></div>
+        <p v-else="toggleBox">Sinon</p> -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+
+    new Vue({
+        el:'#mon-app',
+        data: {
+            title: 'Les Loops en vue JS',
+            toggleBox: true
+        }
+    })        
+
+    </script>
+</body>
+</html>

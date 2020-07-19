@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instance Vue Js</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="mon-app1">
+
+    </div>
+
+
+    <div id="mon-app2">
+        <p v-on:click="func1">{{txt}}</p>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        
+        const ins1 = new Vue({
+            template: "<p>{{txt}}</p>",
+            data: {
+                txt: 'Hello app 1'
+            }
+        });
+        // Pour monter l'instance et l'integrer dans le DOM
+        ins1.$mount();
+        document.getElementById('mon-app1').appendChild(ins1.$el);
+        
+        const ins2 = new Vue({
+            el:'#mon-app2',
+            data: {
+                txt: "Hello app 2"
+            },
+            methods: {
+                func1: function(){
+                    ins1.txt = "Je t'ai changé";
+                }
+            },
+        });   
+        
+    </script>
+</body>
+</html>

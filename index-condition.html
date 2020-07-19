@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions in Vue Js</title>
+    <style>
+        .box {
+            width: 250px;
+            height: 250px;
+            border: 1px solid #333;
+        }
+        .red{
+            background-color: crimson;
+        }
+        .bordure {
+            border: 10px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="mon-app">
+        <h1>{{title}}</h1>
+        <button @click="toggleBox = !toggleBox">Toggle ta couleur</button>
+        
+        <p v-if="num === 1">La valeur est 1</p>
+        <p v-else-if="num === 2">La valeur des 2</p>
+        <p v-else-if="num === 3">La valeur des 3</p>
+        <p v-else>Cela est ni 1 ni 2 ni 3</p>
+
+        <p></p>
+<!--         
+        <div v-if="toggleBox" class="box red"></div>
+        <p v-else="toggleBox">Sinon</p> -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+
+    new Vue({
+        el:'#mon-app',
+        data: {
+            num: 1,
+            title: 'Les Loops en vue JS',
+            toggleBox: true
+        }
+    })        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style CSS in Vue Js</title>
+    <style>
+        .box {
+            width: 250px;
+            height: 250px;
+            border: 1px solid #333;
+        }
+        .red{
+            background-color: crimson;
+        }
+        .bordure {
+            border: 10px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="mon-app">
+        <h1>Style with Vue Js</h1>
+        <button @click="toggleColor = !toggleColor">Toggle la couleur</button>
+        <div 
+        v-bind:class="[objCss, toggleColor ? 'bordure' : '']"
+        
+        ></div>
+        <p :style="{color: 'blue'}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ducimus molestias earum aperiam rem eos. Consequuntur placeat distinctio unde, nulla doloribus ipsa natus labore assumenda hic tenetur pariatur alias veritatis.</p>
+        <p :style="monStyle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ducimus molestias earum aperiam rem eos. Consequuntur placeat distinctio unde, nulla doloribus ipsa natus labore assumenda hic tenetur pariatur alias veritatis.</p>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+
+        new Vue({
+            el:'#mon-app',
+            data: {
+                toggleColor: false,
+                color:'lightblue',
+                witdth: 200
+            },
+            computed: {
+                objCss: function(){
+                    return {
+                        red: this.toggleColor,
+                        box: true
+                    }
+                },
+                monStyle:function(){
+                    return {
+                        backgroundColor: this.color,
+                        width: this.width +"px"
+                    }
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>

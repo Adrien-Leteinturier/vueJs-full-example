@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro composants</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="mon-app1">
+        {{txt}}
+        <mon-premier-composant></mon-premier-composant>
+        <mon-premier-composant></mon-premier-composant>
+    </div>
+
+
+    <div id="mon-app2">
+        <p v-on:click="func1">{{txt}}</p>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+
+        // En cliquant sur le button la fonction changementNom ne changera que l'instance de son composant dans le DOM et pas les autres
+
+        Vue.component('mon-premier-composant', {
+            template: '<p>Mon premier composant {{nom}} <button v-on:click="changementNom">Changement</button></p>',
+            data: function(){
+                return {
+                    nom: 'John doe'
+                }
+            },
+            methods: {
+                changementNom: function(){
+                    this.nom = 'Jack doe';
+                }
+            }
+        })
+        
+        const ins1 = new Vue({
+            el: '#mon-app1',
+            data: {
+                txt: 'Hello app 1'
+            }
+        });
+        
+        const ins2 = new Vue({
+            el:'#mon-app2',
+            data: {
+                txt: "Hello app 2"
+            },
+            methods: {
+                func1: function(){
+                    ins1.txt = "Je t'ai changé";
+                }
+            },
+        });   
+        
+    </script>
+</body>
+</html>

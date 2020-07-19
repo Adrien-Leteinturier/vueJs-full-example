@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The beginning in Vue Js</title>
+</head>
+<style>
+    canvas{
+        width: 300px;
+        height: 200px;
+        border: 1px solid #333;
+    }
+</style>
+<body>
+    <div id="my-app">
+        <h1>Vue js Cours</h1>
+        <p>{{txt}}</p>
+        <p>{{presentation()}}</p>
+        <a v-bind:href="URLVueJs">Le site de vue js</a>
+        <img v-bind:src="URLImg">
+
+        <h2>Compteur: {{ compteur }}</h2>
+
+        <!-- condition -->
+        <h3>{{ compteur ? 'Il est true' : 'Il est false' }}</h3>
+
+        <button @click="augmente">Augmente</button>
+        <button @click="baisse">Baisse</button>
+        <canvas @mousemove="coords"></canvas> 
+        <p>{{x}}/{{y}}</p>
+
+        <div>
+            <!-- event only one  -->
+            <p @click.once="foo">lorem ipsum
+                <!-- stop propagation -->
+                <button id="btn" @click.stop="foo">Clique moi</button>
+            </p>
+        </div>
+
+        <!-- Prevent default -->
+        <form @submit.prevent="onSubmit()"> 
+            <button>Valider</button>
+        </form>
+
+        <p>Ton nom</p>
+        <!-- key up sur enter -->
+        <input type="text" @:keyup="inpFunc" placeholder="Ton nom">
+
+        <!-- V-model -->
+        <input type="text" v-model="valeur" placeholder="V model">
+        <p>{{ valeur }}</p>
+
+        <!-- V-htmm brut -->
+        <p v-html="htmlBrut"></p>
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+            el:'#my-app',
+            data:{
+                htmlBrut: '<p>Mon html brut</p>',
+                valeur: '',
+                compteur: 0,
+                x: 0,
+                y: 0,
+                txt: 'Hello World',
+                nb: 10,
+                URLVueJs: 'https://vuejs.org/',
+                URLImg:'https://images.unsplash.com/photo-1587613754067-13e9a170b42f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=677&q=80'
+            },
+            methods: {
+                inpFunc: function(e){
+                    this.valeur = e.target.value;
+                    console.log(this.valeur)
+                },
+                foo: function(){
+                    console.log('click');
+                },
+                presentation: function(){
+                    return this.txt + this.nb;
+                }, 
+                augmente: function(){
+                    this.compteur++;
+                },
+                baisse: function(){
+                    this.compteur--;
+                },
+                coords:function(event){
+                    this.x = event.offsetX
+                    this.y = event.offsetY;
+                },
+                watch: {
+                    compteur: function(){ // ce lancera si la valeur change en loccurence la valeur 'compteur' 
+                    var ctx = this; // pour avoi acces au this au dessus
+
+                    }
+                },
+                computed: {
+                    fonctionComputed: function(){
+
+                    }
+                    // fonction qui garde en memoire et ne Re Render pas l'ensemble si la valeur n'a pas changé
+                },
+            }
+        })
+    </script>
+</body>
+
+
+</html>

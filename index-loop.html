@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop in Vue Js</title>
+    <style>
+        .box {
+            width: 250px;
+            height: 250px;
+            border: 1px solid #333;
+        }
+        .red{
+            background-color: crimson;
+        }
+        .bordure {
+            border: 10px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="mon-app">
+        <h1>{{title}}</h1>
+        <button @click="toggleBox = !toggleBox">Toggle ta couleur</button>
+        
+        <ul>
+            <li v-for="(item, index) in tableau" :key="index">{{item}}</li>
+        </ul>
+        <ul>
+            <li v-for="(item, index) in tableauFruits" :key="index">{{index}} {{item}}</li>
+        </ul>
+        <ul>
+            <li v-for="(val, props) in objectChat">{{props}} {{val}}</li>
+        </ul>
+        <ul>
+            <li v-for="obj in objectChatPlus">
+                <div v-for="(val, props) in obj">
+                    {{ props }} : {{ val }}
+                </div>
+            </li>
+        </ul>
+        
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        
+        new Vue({
+            el:'#mon-app',
+            data: {
+                
+                title: 'Les Loops en vue JS',
+                toggleBox: true,
+                tableau: [1,2,3,4,5,6],
+                tableauFruits: ["Fraise","Pomme","Poire"],
+                objectChat: {
+                    race: 'Persan',
+                    age: 3,
+                    poids: "3kg"
+                },
+                objectChatPlus: {
+                    objChat: [
+                    {
+                        race: 'Persan',
+                        age: 3,
+                        poids: "3kg"
+                    },
+                    {
+                        race: 'Persan',
+                        age: 3,
+                        poids: "3kg"
+                    },
+                    {
+                        race: 'Persan',
+                        age: 3,
+                        poids: "3kg"
+                    }
+                    ]
+                }
+            }
+        })        
+        
+    </script>
+</body>
+</html>
